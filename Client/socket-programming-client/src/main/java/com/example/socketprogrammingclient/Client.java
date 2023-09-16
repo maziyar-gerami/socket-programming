@@ -10,6 +10,7 @@ public class Client{
     private Socket socket = null;
     private DataInputStream input = null;
     private DataOutputStream out = null;
+    private String line ="";
 
     public Client(String address, int port){
         try {
@@ -22,6 +23,16 @@ public class Client{
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        }
+        while (true){
+            try {
+                line = input.readLine();
+                out.writeUTF(line);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
         }
     }
 public void close() throws IOException{
